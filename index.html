@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <style>
     body {
-      background: #0f2027;
       background: linear-gradient(to right, #203a43, #2c5364);
       font-family: Arial, sans-serif;
       text-align: center;
@@ -13,13 +12,10 @@
       padding: 50px;
     }
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+    h1 { font-size: 40px; margin-bottom: 20px; }
 
     input {
-      width: 400px;
+      width: 300px;
       padding: 10px;
       font-size: 16px;
       border-radius: 5px;
@@ -35,6 +31,16 @@
       background-color: lime;
     }
 
+    #messages {
+      height: 250px;
+      overflow-y: auto;
+      border: 1px solid white;
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+      text-align: left;
+    }
+
     .footer {
       margin-top: 50px;
       font-size: 14px;
@@ -45,11 +51,19 @@
 
 <body>
 
-<h1>🔐 small google</h1>
+<h1>🔐 Small Google</h1>
 <p>Search only Cyber Security & Networking Topics</p>
 
 <input type="text" id="searchQuery" placeholder="Search Cyber Security topics...">
 <button onclick="searchCyber()">Search</button>
+
+<hr style="margin:40px 0;">
+
+<h2>🤖 Cyber AI Assistant</h2>
+
+<div id="messages"></div>
+<input type="text" id="userMessage" placeholder="Ask Cyber Security Question...">
+<button onclick="sendMessage()">Ask AI</button>
 
 <div class="footer">
   Powered by Google Custom Search | Educational Use Only
@@ -68,6 +82,27 @@ function searchCyber() {
 
   let googleSearchURL = "https://www.google.com/search?q=" + encodeURIComponent(finalQuery);
   window.open(googleSearchURL, "_blank");
+}
+
+async function sendMessage() {
+  let message = document.getElementById("userMessage").value;
+  if(message === "") return;
+
+  document.getElementById("messages").innerHTML += "<p><b>You:</b> " + message + "</p>";
+  document.getElementById("userMessage").value = "";
+
+  try {
+    const response = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await response.json();
+    document.getElementById("messages").innerHTML += "<p><b>AI:</b> " + data.reply + "</p>";
+  } catch (error) {
+    document.getElementById("messages").innerHTML += "<p><b>AI:</b> Backend not connected.</p>";
+  }
 }
 </script>
 
