@@ -2,10 +2,69 @@
 <html>
 <head>
     <title>My First Website</title>
-    <meta name="google-site-verification" content="dIDbYU3zKF0nCJ4LZD3W0HXP2lNbOyG5Nt8QalxLzb8" /></head>
-    
+
+    <meta name="google-site-verification" content="dIDbYU3zKF0nCJ4LZD3W0HXP2lNb0yG5Nt8QaIxLzb8" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            background: black;
+            padding: 15px;
+        }
+
+        nav a {
+            color: lime;
+            text-decoration: none;
+            margin: 20px;
+            font-size: 18px;
+        }
+
+        .container {
+            margin-top: 15%;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+
 <body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
     <h1>Welcome Sushil 🚀</h1>
     <p>This is my first live website.</p>
+</div>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I am learning networking and ethical hacking.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+        <input type="text" placeholder="Your Name"><br><br>
+        <input type="email" placeholder="Your Email"><br><br>
+        <textarea placeholder="Your Message"></textarea><br><br>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
 </body>
 </html>
