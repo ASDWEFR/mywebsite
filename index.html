@@ -1,95 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My First Website</title>
+  <title>Cyber Security Search - Sushil</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background: #0f2027;
+      background: linear-gradient(to right, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      padding: 50px;
+    }
 
-    <meta name="google-site-verification" content="dIDbYU3zKF0nCJ4LZD3W0HXP2lNb0yG5Nt8QaIxLzb8" />
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
-            text-align: center;
-        }
+    input {
+      width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
 
-        nav {
-            background: black;
-            padding: 15px;
-        }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background-color: lime;
+    }
 
-        nav a {
-            color: lime;
-            text-decoration: none;
-            margin: 20px;
-            font-size: 18px;
-        }
-
-        .container {
-            margin-top: 15%;
-            animation: fadeIn 2s ease-in;
-        }
-
-        section {
-            padding: 60px 20px;
-        }
-
-        input, textarea {
-            width: 250px;
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        button {
-            padding: 8px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-    </style>
+    .footer {
+      margin-top: 50px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-</nav>
+<h1>🔐 Cyber Security Search Engine</h1>
+<p>Search only Cyber Security & Networking Topics</p>
 
-<div class="container">
-    <h1>Welcome Sushil 🚀</h1>
-    <p>This is my first live website.</p>
+<input type="text" id="searchQuery" placeholder="Search Cyber Security topics...">
+<button onclick="searchCyber()">Search</button>
+
+<div class="footer">
+  Powered by Google Custom Search | Educational Use Only
 </div>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p>I am learning networking and ethical hacking.</p>
-</section>
+<script>
+function searchCyber() {
+  let query = document.getElementById("searchQuery").value;
+  if(query === "") {
+    alert("Please enter a search term.");
+    return;
+  }
 
-<section id="contact">
-    <h2>Contact Me</h2>
+  let sites = "site:owasp.org OR site:nist.gov OR site:kali.org OR site:cisco.com OR site:ec-council.org OR site:wikipedia.org";
+  let finalQuery = query + " " + sites;
 
-    <form action="https://formspree.io/f/xdaljybn" method="POST">
-
-        <input type="text" name="name" placeholder="Your Name" required><br><br>
-
-        <input type="email" name="email" placeholder="Your Email" required><br><br>
-
-        <textarea name="message" placeholder="Your Message" required></textarea><br><br>
-
-        <button type="submit">Send</button>
-
-    </form>
-
-</section>
+  let googleSearchURL = "https://www.google.com/search?q=" + encodeURIComponent(finalQuery);
+  window.open(googleSearchURL, "_blank");
+}
+</script>
 
 </body>
 </html>
